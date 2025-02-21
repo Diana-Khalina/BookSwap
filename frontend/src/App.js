@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
-import BookList from "./pages/BookList";
+import AddBook from "./pages/Book"; // Assuming this is where the form is
 import Navbar from "./components/Navbar";
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/books" element={<BookList />} />
+        <Route path="/book" element={<AddBook />} />
       </Routes>
     </Router>
   );
