@@ -1,21 +1,38 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import { Container, Form, Button, Card } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
   const [isRegistering, setIsRegistering] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
+  const [formData, setFormData] = useState({ name: "", email: "", password: "" });
+  const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(isRegistering ? "Registering User" : "Logging in", formData);
+    if (isRegistering) {
+      // Registration API call
+      try {
+        const response = await axios.post("http://localhost:5003/api/auth/register", formData);
+        console.log("Registration successful:", response.data);
+        setMessage("Registration successful! Please log in.");
+        // Optionally, switch to login view after successful registration
+        setIsRegistering(false);
+      } catch (error) {
+        console.error("Registration error:", error.response?.data || error.message);
+        setMessage("Registration failed: " + (error.response?.data?.error || error.message));
+      }
+    } else {
+      // For now, simply log login form data
+      navigate("/book");
+      console.log("Login form submitted", formData);
+      setMessage("Login functionality not yet implemented.");
+    }
   };
 
   return (
@@ -28,9 +45,7 @@ export default function Home() {
         <Card.Title className="text-center mb-3">
           {isRegistering ? "Register" : "Login"}
         </Card.Title>
-
         <Form onSubmit={handleSubmit}>
-          {/* Name Field (Only for Registration) */}
           {isRegistering && (
             <Form.Group className="mb-3">
               <Form.Label>Full Name</Form.Label>
@@ -44,8 +59,6 @@ export default function Home() {
               />
             </Form.Group>
           )}
-
-          {/* Email Field */}
           <Form.Group className="mb-3">
             <Form.Label>Email</Form.Label>
             <Form.Control
@@ -57,8 +70,6 @@ export default function Home() {
               required
             />
           </Form.Group>
-
-          {/* Password Field */}
           <Form.Group className="mb-3">
             <Form.Label>Password</Form.Label>
             <Form.Control
@@ -70,26 +81,19 @@ export default function Home() {
               required
             />
           </Form.Group>
-
-          {/* Submit Button */}
           <Button variant="primary" type="submit" className="w-100">
             {isRegistering ? "Sign Up" : "Login"}
           </Button>
         </Form>
-
-        {/* Toggle Between Login/Register */}
         <div className="text-center mt-3">
           <small>
             {isRegistering ? "Already have an account?" : "Don't have an account?"}{" "}
-            <Button
-              variant="link"
-              className="p-0"
-              onClick={() => setIsRegistering(!isRegistering)}
-            >
+            <Button variant="link" className="p-0" onClick={() => setIsRegistering(!isRegistering)}>
               {isRegistering ? "Login" : "Sign Up"}
             </Button>
           </small>
         </div>
+        {message && <p className="mt-2 text-center">{message}</p>}
       </Card>
     </Container>
   );
