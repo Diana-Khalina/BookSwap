@@ -1,0 +1,14 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "TMaGqAOCyTCCCowviZjelrgfvdoSRcTM",
+    "database": "railway",
+    "host": "tramway.proxy.rlwy.net",
+    "port": 32138,
+    "dialect": "postgres"
+  },
+  "production": {
+    "use_env_variable": "postgresql://postgres:TMaGqAOCyTCCCowviZjelrgfvdoSRcTM@tramway.proxy.rlwy.net:32138/railway",
+    "dialect": "postgres"
+  }
+}
