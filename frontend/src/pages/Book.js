@@ -5,7 +5,12 @@
 
 import React, { useState } from "react";
 import "../App.css";
+import BookSwapMap from "../components/BookSwapMap"; // ✅ Так треба для default export
+
 function App() {
+  
+ 
+  
   const [activeSection, setActiveSection] = useState("mySwaps"); // State to manage active section
   // Sample book data
   const [books, setBooks] = useState([
@@ -13,6 +18,10 @@ function App() {
     { id: 2, title: "1984", author: "George Orwell" },
     { id: 3, title: "To Kill a Mockingbird", author: "Harper Lee" },
   ]);
+  const [user, setUser] = useState({
+    name: "Діана",
+    zipCode: "01001", // Тут буде зіпкод користувача
+  });
   // Render different sections based on activeSection state
   const renderSection = () => {
     switch (activeSection) {
@@ -31,7 +40,9 @@ function App() {
           </div>
         );
       case "booksNearby":
-        return <h2>Books Near By</h2>;
+        return <BookSwapMap userZipCode={user.zipCode} />;
+
+        
       case "explore":
         return <h2>Explore</h2>;
       default:
