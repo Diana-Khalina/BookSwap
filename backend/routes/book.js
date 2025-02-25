@@ -1,15 +1,32 @@
 const express = require("express");
-const { Book } = require("../models/Book");
-const authenticateToken = require("../middleware/authMiddleware");
+const axios = require("axios");
 const router = express.Router();
+const authenticateToken = require("../middleware/authenticateToken");
+const { Book } = require("../models/Book");
 
 // Get books of the logged-in user
-router.get("/", authenticateToken, async (req, res) => {
+router.get("/books",  async (req, res) => {
   try {
-    const books = await Book.findAll({ where: { userId: req.user.userId } });
+    const { title } = req.query; // Get search query from request
+    if (!title) {
+      return res.status(400).json({ message: "Please provide a book title." });
+    }
+
+    // Fetch data from Open Library API
+    const response = await axios.get(`https://openlibrary.org/search.json?q=${title}`);
+
+    // Extract relevant book data
+    const books = response.data.docs.map((book) => ({
+      title: book.title,
+      author: book.author_name ? book.author_name.join(", ") : "Unknown Author",
+      publishYear: book.first_publish_year || "N/A",
+      coverImage: book.cover_i ? `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg` : null,
+      openLibraryKey: book.key, 
+    }));
+
     res.json(books);
   } catch (err) {
-    console.error("Error fetching books:", err);
+    console.error("Error fetching books from Open Library:", err);
     res.status(500).json({ message: "Error fetching books" });
   }
 });
