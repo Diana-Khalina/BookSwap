@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import L from "leaflet";
 
 // Fix Leaflet's default marker icon issue in React
@@ -17,8 +18,8 @@ const customIcon = new L.Icon({
 });
 
 const mockUsers = [
-  { id: 1, name: "Anna", latitude: 50.4501, longitude: 30.5234 },
-  { id: 2, name: "Oleh", latitude: 50.4547, longitude: 30.5166 },
+  { id: 1, name: "Anna", latitude: 27.9944024, longitude: -81.7602544 }, // Florida
+  { id: 2, name: "Oleh", latitude: 25.7617, longitude: -80.1918 }, // Miami, FL
 ];
 
 const BookSwapMap = ({ userZipCode }) => {
@@ -34,7 +35,7 @@ const BookSwapMap = ({ userZipCode }) => {
   const fetchCoordinates = async (zip) => {
     try {
       const response = await fetch(
-        `https://nominatim.openstreetmap.org/search?postalcode=${zip}&country=UA&format=json`
+        `https://nominatim.openstreetmap.org/search?postalcode=${zip}&country=US&format=json`
       );
       const data = await response.json();
 
@@ -51,15 +52,16 @@ const BookSwapMap = ({ userZipCode }) => {
   };
 
   return (
-    <div style={{ textAlign: "center", padding: "20px" }}>
-      <h2>Users Nearby</h2>
+    <div className="container text-center mt-4">
+      <h2 className="mb-3">Users Nearby</h2>
 
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <p className="text-danger">{error}</p>}
 
       <MapContainer
-        center={location ? [location.latitude, location.longitude] : [50.4501, 30.5234]}
+        center={location ? [location.latitude, location.longitude] : [27.9944024, -81.7602544]} // Default to Florida
         zoom={10}
         style={{ height: "500px", width: "100%", marginTop: "20px" }}
+        className="border rounded shadow-sm"
       >
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 

@@ -5,7 +5,7 @@
 
 import React, { useState } from "react";
 import "../App.css";
-import BookSwapMap from "../components/BookSwapMap"; // ✅ Так треба для default export
+import BookSwapMap from "../components/BookSwapMap"; 
 
 function App() {
   
@@ -19,8 +19,8 @@ function App() {
     { id: 3, title: "To Kill a Mockingbird", author: "Harper Lee" },
   ]);
   const [user, setUser] = useState({
-    name: "Діана",
-    zipCode: "01001", // Тут буде зіпкод користувача
+    name: "Diana",
+    zipCode: "34235", // 
   });
   // Render different sections based on activeSection state
   const renderSection = () => {
