@@ -7,7 +7,7 @@ const bookRoutes = require("./routes/book");
 
 
 const app = express();
-const PORT = process.env.PORT || 5004;
+const PORT = process.env.PORT || 5003;
 
 // Middleware
 app.use(cors());
@@ -18,7 +18,7 @@ const authRoutes = require("./routes/auth");
 
 
 const authenticateToken = require("./middleware/authMiddleware");
-
+console.log("Connecting to database:", process.env.DATABASE_URL);
 // Use Auth routes
 app.use("/api/auth", authRoutes);
 

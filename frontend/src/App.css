@@ -7,6 +7,75 @@
   pointer-events: none;
 }
 
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+.app {
+  display: flex;
+  height: 100vh;
+}
+.header {
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+}
+.header .logo {
+  height: 50px;
+  margin-bottom: 10px;
+}
+.side-nav {
+  width: 200px;
+  background-color: #F4F4F4;
+  padding: 20px;
+  margin-top: 100px; /* Adjust for header height */
+}
+.side-nav ul {
+  list-style: none;
+  padding: 0;
+}
+.side-nav ul li {
+  margin: 15px 0;
+  cursor: pointer;
+  color: #333;
+  font-weight: bold;
+}
+.side-nav ul li:hover {
+  color: #007BFF;
+}
+.main-content {
+  flex: 1;
+  padding: 20px;
+  margin-top: 100px; /* Adjust for header height */
+  margin-left: 200px; /* Adjust for side nav width */
+}
+.bookshelf {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.book {
+  background-color: #F9F9F9;
+  border: 1px solid #ddd;
+  padding: 15px;
+  width: 150px;
+  text-align: center;
+}
+.book h3 {
+  margin: 0;
+  font-size: 16px;
+}
+.book p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #555;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -39,6 +108,8 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
+  background-color: #F5F5DC;
+  color: #3E2723;
 }
 
 .app {
@@ -47,7 +118,7 @@ body {
 }
 
 .header {
-  background-color: #333;
+  background-color: #D2B48C;
   color: white;
   padding: 20px;
   text-align: center;
@@ -64,7 +135,7 @@ body {
 
 .side-nav {
   width: 200px;
-  background-color: #f4f4f4;
+  background-color: #b3b268;
   padding: 20px;
   margin-top: 100px; /* Adjust for header height */
 }
@@ -75,7 +146,7 @@ body {
 }
 
 .side-nav ul li {
-  margin: 15px 0;
+  margin: 25px 0;
   cursor: pointer;
   color: #333;
   font-weight: bold;
@@ -88,31 +159,90 @@ body {
 .main-content {
   flex: 1;
   padding: 20px;
-  margin-top: 100px; /* Adjust for header height */
-  margin-left: 200px; /* Adjust for side nav width */
+  margin-top: 100px; 
+  margin-left: 200px; 
 }
 
 .bookshelf {
+  padding: 20px;
+}
+
+.shelf {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  padding: 20px;
+  background-color: #e0d8c5; 
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .book {
-  background-color: #f9f9f9;
+  display: flex;
+  align-items: flex-start;
+  background-color: #fff;
   border: 1px solid #ddd;
   padding: 15px;
-  width: 150px;
-  text-align: center;
+  width: 300px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
+.book-cover {
+  width: 100px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-right: 15px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 1;
+}
+
+.book-details {
+  flex: 1;
+  position: relative;
+  z-index: 0;
+}
 .book h3 {
   margin: 0;
-  font-size: 16px;
+  font-size: 18px;
+  color: #333;
 }
 
 .book p {
   margin: 5px 0;
   font-size: 14px;
   color: #555;
+}
+.add-book-form {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.add-book-form input,
+.add-book-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.add-book-form button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-book-form button:hover {
+  background-color: #0056b3;
 }
