@@ -24,10 +24,11 @@ const BookSearch = () => {
         } finally {
             setLoading(false);
         }
+       
     };
 
     return (
-        <div className="book-search">
+        <div className="BookSearch">
             <h2>Search for Books</h2>
             <input
                 type="text"
@@ -41,8 +42,8 @@ const BookSearch = () => {
             {error && <p style={{ color: "red" }}>{error}</p>}
             
             {/* Display Results */}
-            <div className="book-results">
-                {books.length > 0 ? (
+            <div className="BookList">  
+                      {books.length > 0 ? (
                     <ul>
                         {books.map((book, index) => (
                             <li key={index} className="book-item">

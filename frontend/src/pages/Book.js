@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import "../App.css";
-
+import BookSearch from "../components/BookSearch";
 
 
 function App() {
@@ -21,7 +21,9 @@ function App() {
         return (
           <div className="bookshelf">
             <h2>My Swaps</h2>
+            <BookSearch />
             <div className="books">
+
               {books.map((book) => (
                 <div key={book.id} className="book">
                   <h3>{book.title}</h3>

@@ -21,7 +21,7 @@ router.get("/books",  async (req, res) => {
       author: book.author_name ? book.author_name.join(", ") : "Unknown Author",
       publishYear: book.first_publish_year || "N/A",
       coverImage: book.cover_i ? `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg` : null,
-      openLibraryKey: book.key, // Useful for linking to Open Library pages
+      openLibraryKey: book.key, 
     }));
 
     res.json(books);
