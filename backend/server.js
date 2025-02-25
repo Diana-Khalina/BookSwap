@@ -2,6 +2,9 @@ const express = require("express");
 const cors = require("cors");
 const sequelize = require("./config/database");
 require("dotenv").config();
+const axios = require("axios");
+const bookRoutes = require("./routes/book");
+
 
 const app = express();
 const PORT = process.env.PORT || 5004;
@@ -12,7 +15,7 @@ app.use(express.json());
 
 // Import routes
 const authRoutes = require("./routes/auth");
-const bookRoutes = require("./routes/book");
+
 
 const authenticateToken = require("./middleware/authMiddleware");
 
@@ -21,7 +24,7 @@ app.use("/api/auth", authRoutes);
 
 // Use Book routes (for books functionality)
 app.use("/api/book", bookRoutes);
-
+app.use('/api', require('./routes/book'));
 // Example of a protected route
 app.get("/api/protected", authenticateToken, (req, res) => {
   res.json({ message: "This is a protected route", user: req.user });
