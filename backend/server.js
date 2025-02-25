@@ -15,7 +15,7 @@ const authRoutes = require("./routes/auth");
 const bookRoutes = require("./routes/book");
 
 const authenticateToken = require("./middleware/authMiddleware");
-
+console.log("Connecting to database:", process.env.DATABASE_URL);
 // Use Auth routes
 app.use("/api/auth", authRoutes);
 

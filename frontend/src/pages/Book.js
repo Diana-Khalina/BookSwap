@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import "./App.css";
+import "../App.css";
+import BookSwapMap from "../components/BookSwapMap"; 
 
 function App() {
-  const [activeSection, setActiveSection] = useState("mySwaps"); 
-
+  
+ 
+  
+  const [activeSection, setActiveSection] = useState("mySwaps"); // State to manage active section
   // Sample book data
   const [books, setBooks] = useState(() => {
     // Load books from localStorage or use default books
@@ -125,14 +128,15 @@ function App() {
           </div>
         );
       case "booksNearby":
-        return <h2>Books Near By</h2>;
+        return <BookSwapMap userZipCode={user.zipCode} />;
+
+        
       case "explore":
         return <h2>Explore</h2>;
       default:
         return <h2>My Swaps</h2>;
     }
   };
-
   return (
     <div className="app">
       <header className="header">
@@ -152,5 +156,53 @@ function App() {
     </div>
   );
 }
-
 export default App;
+
+
+// const AddBook = () => {
+//   const [title, setTitle] = useState("");
+//   const [message, setMessage] = useState("");
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     const token = localStorage.getItem("token");
+  
+//     try {
+//       await axios.post(
+//         "http://localhost:5003/api/book", // Backend API endpoint
+//         { title },
+//         {
+//           headers: {
+//             Authorization: `Bearer ${token}`, // Include JWT token for authentication
+//           },
+//         }
+//       );
+//       setMessage("Book added successfully!");
+//       setTitle(""); // Reset the title after successful submission
+//     } catch (error) {
+//       console.error("Error adding book:", error);
+//       setMessage("Failed to add book.");
+//     }
+//   };
+
+//   return (
+//     <div>
+//       <h2>Add a Book</h2>
+//       <form onSubmit={handleSubmit}>
+//         <label>
+//           Title:
+//           <input
+//             type="text"
+//             value={title}
+//             onChange={(e) => setTitle(e.target.value)}
+//             required
+//           />
+//         </label>
+//         <button type="submit">Add Book</button>
+//       </form>
+//       {message && <p>{message}</p>}
+//     </div>
+//   );
+// };
+
+// export default AddBook;
