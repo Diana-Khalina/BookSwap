@@ -6,7 +6,8 @@
   "start": "node backend/server.js",
   "server": "nodemon backend/server.js",
   "client": "npm start --prefix frontend",
-  "build": "npm run build --prefix frontend"
+  "build": "npm run build --prefix frontend",
+  "postinstall": "npm install --prefix frontend && npm run build --prefix frontend"
 },
 
 
