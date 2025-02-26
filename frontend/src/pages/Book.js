@@ -9,6 +9,8 @@ function App() {
  
   
   const [activeSection, setActiveSection] = useState("mySwaps"); // State to manage active section
+  const navigate = useNavigate();
+
   // Sample book data
   const [books, setBooks] = useState(() => {
     // Load books from localStorage or use default books
