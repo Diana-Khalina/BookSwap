@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import "../App.css";
 import BookSearch from "../components/BookSearch";
 import BookSwapMap from "../components/BookSwapMap"; 
+import { useNavigate } from "react-router-dom";
 
 function App() {
   
  
   
   const [activeSection, setActiveSection] = useState("mySwaps"); // State to manage active section
+  const navigate = useNavigate();
+
   // Sample book data
   const [books, setBooks] = useState(() => {
     // Load books from localStorage or use default books
@@ -52,7 +55,10 @@ function App() {
   });
 
   const [newBook, setNewBook] = useState({ title: "", author: "", summary: "", cover: "" });
-
+  const [user, setUser] = useState({
+    name: "Diana",
+    zipCode: "34235",
+  });
   // Handle input changes in the form
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -134,12 +140,18 @@ function App() {
         return <BookSwapMap  />;
 
         
-      case "explore":
-        return <h2>Explore</h2>;
+      
       default:
         return <h2>My Swaps</h2>;
     }
   };
+
+  // Logout handler: remove token and redirect to home/login page
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/"); // Change the route as needed for your app
+  };
+
   return (
     <div className="app">
       <header className="header">
@@ -151,7 +163,8 @@ function App() {
         <ul>
           <li onClick={() => setActiveSection("mySwaps")}>My Swaps</li>
           <li onClick={() => setActiveSection("booksNearby")}>Books Near By</li>
-          
+          <li onClick={handleLogout}>Log Out</li>
+
         </ul>
       </nav>
 
