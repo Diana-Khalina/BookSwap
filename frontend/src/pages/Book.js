@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "../App.css";
 import BookSearch from "../components/BookSearch";
-
 import BookSwapMap from "../components/BookSwapMap"; 
 
 function App() {
@@ -132,7 +131,7 @@ function App() {
           </div>
         );
       case "booksNearby":
-        return <BookSwapMap userZipCode={user.zipCode} />;
+        return <BookSwapMap  />;
 
         
       case "explore":
@@ -144,7 +143,7 @@ function App() {
   return (
     <div className="app">
       <header className="header">
-        <img src="logo.jpeg" alt="Company Logo" className="logo" />
+        <img src="BookSwapLogo.png" alt="Company Logo" className="logo" />
         <h1>Book Swapping Platform</h1>
       </header>
 
@@ -152,7 +151,7 @@ function App() {
         <ul>
           <li onClick={() => setActiveSection("mySwaps")}>My Swaps</li>
           <li onClick={() => setActiveSection("booksNearby")}>Books Near By</li>
-          <li onClick={() => setActiveSection("explore")}>Explore</li>
+          
         </ul>
       </nav>
 
@@ -161,7 +160,6 @@ function App() {
   );
 }
 export default App;
-
 
 // const AddBook = () => {
 //   const [title, setTitle] = useState("");
