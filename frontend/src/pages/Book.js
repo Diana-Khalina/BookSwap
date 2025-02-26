@@ -137,7 +137,7 @@ function App() {
           </div>
         );
       case "booksNearby":
-        return <BookSwapMap  />;
+        return <BookSwapMap userZipCode={user.zipCode} />;
 
         
       
