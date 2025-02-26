@@ -13,27 +13,70 @@ export default function Home() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   if (isRegistering) {
+  //     // Registration API call
+  //     try {
+  //       const response = await axios.post("http://localhost:5003/api/auth/register", formData);
+  //       console.log("Registration successful:", response.data);
+  //       setMessage("Registration successful! Please log in.");
+  //       // Optionally, switch to login view after successful registration
+  //       setIsRegistering(false);
+  //     } catch (error) {
+  //       console.error("Registration error:", error.response?.data || error.message);
+  //       setMessage("Registration failed: " + (error.response?.data?.error || error.message));
+  //     }
+  //   } else {
+  //     // For now, simply log login form data
+  //     navigate("/book");
+  //     console.log("Login form submitted", formData);
+  //     setMessage("Login functionality not yet implemented.");
+  //   }
+  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
+  
     if (isRegistering) {
+      if (!formData.name || !formData.email || !formData.password) {
+        setMessage("All fields are required.");
+        return;
+      }
+  
+      if (formData.password.length < 6) {
+        setMessage("Password must be at least 6 characters long.");
+        return;
+      }
+  
       // Registration API call
       try {
         const response = await axios.post("http://localhost:5003/api/auth/register", formData);
         console.log("Registration successful:", response.data);
         setMessage("Registration successful! Please log in.");
-        // Optionally, switch to login view after successful registration
         setIsRegistering(false);
       } catch (error) {
         console.error("Registration error:", error.response?.data || error.message);
         setMessage("Registration failed: " + (error.response?.data?.error || error.message));
       }
     } else {
-      // For now, simply log login form data
-      navigate("/book");
-      console.log("Login form submitted", formData);
-      setMessage("Login functionality not yet implemented.");
+      // **🚀 Login API call (Fixed)**
+      try {
+        const response = await axios.post("http://localhost:5003/api/auth/login", {
+          email: formData.email,
+          password: formData.password,
+        });
+  
+        console.log("Login successful:", response.data);
+        localStorage.setItem("token", response.data.token); // Save token
+        setMessage("Login successful!");
+        navigate("/book"); // Redirect to books page
+      } catch (error) {
+        console.error("Login error:", error.response?.data || error.message);
+        setMessage("Login failed: " + (error.response?.data?.error || error.message));
+      }
     }
   };
+  
 
   return (
     <Container className="d-flex flex-column align-items-center justify-content-center vh-100">
