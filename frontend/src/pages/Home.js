@@ -38,7 +38,7 @@ export default function Home() {
   return (
     <Container className="d-flex flex-column align-items-center justify-content-center vh-100">
       {/* Logo */}
-      <img src="/logo.jpeg" alt="BookSwap Logo" className="mb-4" style={{ width: "100px" }} />
+      <img src="/BookSwapLogo.png" alt="BookSwap Logo" className="mb-4" style={{ width: "100px" }} />
 
       {/* Form Card */}
       <Card style={{ width: "22rem" }} className="p-4 shadow">
