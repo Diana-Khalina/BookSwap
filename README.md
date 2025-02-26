@@ -48,4 +48,7 @@ Technologies Used
 
 This project was completed using Windows and Apple operating systems, React (HTML/CSS/JS), VS Code, and the web browser.
 
-Links 
+### Links 
+
+- Live link: https://bookswap-xgmx.onrender.com/  
+- GitHub link: https://github.com/Diana-Khalina/BookSwap   
