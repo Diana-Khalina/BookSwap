@@ -85,7 +85,7 @@ function App() {
             <h2>My Swaps</h2>
             <BookSearch />
             
-            <div className="shelf">
+            <div className="shelf mt-3">
               {books.map((book) => (
                 <div key={book.id} className="book">
                   <img src={book.cover} alt={book.title} className="book-cover" />
@@ -138,8 +138,6 @@ function App() {
         );
       case "booksNearby":
         return <BookSwapMap userZipCode={user.zipCode} />;
-
-        
       
       default:
         return <h2>My Swaps</h2>;
