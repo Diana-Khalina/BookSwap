@@ -50,7 +50,7 @@ export default function Home() {
   
       // Registration API call
       try {
-        const response = await axios.post("http://localhost:5003/api/auth/register", formData);
+        const response = await axios.post("https://bookswap-xgmx.onrender.com/api/auth/register", formData);
         console.log("Registration successful:", response.data);
         setMessage("Registration successful! Please log in.");
         setIsRegistering(false);
@@ -61,7 +61,7 @@ export default function Home() {
     } else {
       // **🚀 Login API call (Fixed)**
       try {
-        const response = await axios.post("http://localhost:5003/api/auth/login", {
+        const response = await axios.post("https://bookswap-xgmx.onrender.com/api/auth/login", {
           email: formData.email,
           password: formData.password,
         });
